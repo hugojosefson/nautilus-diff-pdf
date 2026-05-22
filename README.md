@@ -5,19 +5,30 @@ Nautilus extension that adds a "Diff PDFs" context menu item when exactly 2 PDF 
 ## Dependencies
 
 - `diff-pdf`
-- `gir1.2-nautilus-4.1`
-- `python3-nautilus`
+- `gir1.2-nautilus-4.1` (Ubuntu/Debian) or `nautilus-python` (Fedora)
+- `python3-nautilus` (Ubuntu/Debian) or `nautilus-python` (Fedora)
 
 ## Install
 
-```
-make install-deps
-make install
+```bash
+git clone https://github.com/user/nautilus-diff-pdf.git
+cd nautilus-diff-pdf
+bash install.sh
 nautilus -q && nautilus
+```
+
+Or one-liner:
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/user/nautilus-diff-pdf/main/install.sh)
 ```
 
 ## Uninstall
 
+```bash
+bash uninstall.sh
 ```
-make uninstall
-```
+
+## Usage
+
+Select exactly 2 PDF files in Nautilus, right-click, and choose **Diff PDFs**.

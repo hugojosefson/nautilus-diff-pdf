@@ -35,7 +35,7 @@ class DiffPdfExtension(GObject.GObject, Nautilus.MenuProvider):
         paths = tuple(self.uri_to_path(f.get_uri()) for f in pdfs)
 
         item = Nautilus.MenuItem(
-            name="DiffPdf::diff_pdfs",
+            name="NautilusDiffPdf::diff_pdfs",
             label="Diff PDFs",
             tip="Compare two PDF files side by side",
         )
