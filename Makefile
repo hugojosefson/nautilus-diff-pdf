@@ -25,4 +25,4 @@ check:
 	@dpkg -s python3-nautilus >/dev/null 2>&1 || { echo "Error: python3-nautilus not installed"; exit 1; }
 
 install-deps:
-	@sudo apt install -y gir1.2-nautilus-4.1 python3-nautilus
+	sudo apt install -y gir1.2-nautilus-4.1 python3-nautilus
