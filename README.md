@@ -11,6 +11,7 @@ Nautilus extension that adds a "Diff PDFs" context menu item when exactly 2 PDF 
 ## Install
 
 ```
+make install-deps
 make install
 nautilus -q && nautilus
 ```
