@@ -1,11 +1,16 @@
 import subprocess
-from urllib.parse import unquote
-from gi.repository import Nautilus, GObject
+import traceback
 from typing import List
+from urllib.parse import unquote
+
+from gi.repository import Nautilus, GObject
 
 
 class DiffPdfExtension(GObject.GObject, Nautilus.MenuProvider):
+    """Nautilus extension for visually comparing two PDF files."""
+
     def uri_to_path(self, uri: str) -> str:
+        """Convert a file URI to a local path."""
         return unquote(uri.replace("file://", ""))
 
     def diff_pdf_activate_cb(
@@ -13,14 +18,15 @@ class DiffPdfExtension(GObject.GObject, Nautilus.MenuProvider):
         menu: Nautilus.MenuItem,
         paths: tuple,
     ) -> None:
+        """Handle the diff PDF menu activation."""
         path1, path2 = paths
         try:
-            subprocess.Popen(
+            with subprocess.Popen(
                 ["diff-pdf", "--view", path1, path2],
-            )
-        except Exception as e:
-            import traceback
-            with open("/tmp/diff-pdf-error.log", "w") as f:
+            ):
+                pass
+        except OSError as e:
+            with open("/tmp/diff-pdf-error.log", "w", encoding="utf-8") as f:
                 f.write(f"Error: {e}\n{traceback.format_exc()}\n")
                 f.write(f"path1={path1}\npath2={path2}\n")
 
@@ -28,6 +34,7 @@ class DiffPdfExtension(GObject.GObject, Nautilus.MenuProvider):
         self,
         files: List[Nautilus.FileInfo],
     ) -> List[Nautilus.MenuItem]:
+        """Get menu items for selected files."""
         pdfs = [f for f in files if f.get_name().lower().endswith(".pdf")]
         if len(pdfs) != 2:
             return []
@@ -45,6 +52,7 @@ class DiffPdfExtension(GObject.GObject, Nautilus.MenuProvider):
 
     def get_background_items(
         self,
-        current_folder: Nautilus.FileInfo,
+        _current_folder: Nautilus.FileInfo,
     ) -> List[Nautilus.MenuItem]:
+        """Get background menu items (none for this extension)."""
         return []
