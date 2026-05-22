@@ -1,0 +1,11 @@
+[main]
+# Ignore gi.repository import errors (not available in CI)
+ignore=gi
+
+[MESSAGES_CONTROL]
+# Nautilus extension naming convention uses hyphens
+disable=invalid-name,missing-docstring,import-error,broad-except,consider-using-with,import-outside-toplevel,unspecified-encoding,unused-argument,wrong-import-order
+
+[FORMAT]
+# Disable line length and other formatting checks
+max-line-length=120
