@@ -37,7 +37,7 @@ class DiffPdfExtension(GObject.GObject, Nautilus.MenuProvider):
         item = Nautilus.MenuItem(
             name="NautilusDiffPdf::diff_pdfs",
             label="Diff PDFs",
-            tip="Compare two PDF files side by side",
+            tip="Visually compare two PDF files",
         )
         item.connect("activate", self.diff_pdf_activate_cb, paths)
 
