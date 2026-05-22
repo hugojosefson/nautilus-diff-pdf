@@ -1,6 +1,7 @@
 # nautilus-diff-pdf
 
-Nautilus extension that adds a "Diff PDFs" context menu item when exactly 2 PDF files are selected. Runs `diff-pdf --view` on the selected files.
+Nautilus extension that adds a "Diff PDFs" context menu item when exactly 2 PDF
+files are selected. Runs `diff-pdf --view` on the selected files.
 
 ## Dependencies
 
