@@ -1,16 +1,16 @@
 PREFIX = $(HOME)/.local/share/nautilus-python/extensions
 BASHRC = $(HOME)/.bashrc
-PYTHONPATH_LINE = export PYTHONPATH="/usr/lib/python3/dist-packages${PYTHONPATH:+:$PYTHONPATH}"
 
 .PHONY: install uninstall check
 
 install: check
 	@mkdir -p $(PREFIX)
 	@cp extensions/diff-pdf.py $(PREFIX)/diff-pdf.py
-	@grep -qF 'nautilus-python needs system dist-packages' $(BASHRC) || \
-		echo '' >> $(BASHRC) && \
-		echo '# nautilus-python needs system dist-packages for gi module' >> $(BASHRC) && \
-		echo '$(PYTHONPATH_LINE)' >> $(BASHRC)
+	@if ! grep -qF 'nautilus-python needs system dist-packages' $(BASHRC); then \
+		echo '' >> $(BASHRC); \
+		echo '# nautilus-python needs system dist-packages for gi module' >> $(BASHRC); \
+		echo 'export PYTHONPATH="/usr/lib/python3/dist-packages${PYTHONPATH:+:$PYTHONPATH}"' >> $(BASHRC); \
+	fi
 	@echo "Installed. Restart nautilus with: nautilus -q && nautilus"
 
 uninstall:
